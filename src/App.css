@@ -1,0 +1,35 @@
+.app-wrapper {
+  display: grid;
+
+  /*выравнивание и маштаб*/
+  margin: 0 auto;
+  width: 1200px;
+
+
+  /* Описание колонок и столбцов*/
+  grid-template-areas: 
+  "h h"
+  "n c";
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 2fr 10fr;
+}
+
+.header_1 {
+  /*Переименованили название класса*/
+  grid-area: h;
+  background-color: chartreuse;
+}
+
+.header_1 img {
+  width: 90px;
+ }
+
+ .nav_1 {
+  grid-area: n;
+  background-color: blue;
+}
+
+.content_1{
+  grid-area: c;
+  background-color: darkturquoise;
+}
