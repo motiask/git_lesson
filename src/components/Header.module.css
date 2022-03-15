@@ -1,9 +1,0 @@
-.header_1 {
-    /*Переименованили название класса*/
-    grid-area: h;
-    background-color: chartreuse;
-  }
-  
-  .header_1 img {
-    width: 90px;
-   }
