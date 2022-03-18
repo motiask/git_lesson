@@ -1,6 +1,8 @@
 .nav_1 {
   grid-area: n;
   background-color: cyan;
+  /*устанавливает внутренние отступы*/
+  padding: 20px;
 }
 
 .item {
@@ -8,5 +10,15 @@
 }
 
 .item.active {
-  color: gold;
+  color: green;
+}
+
+/*работа с ссылкой*/
+.item a.activeLink{
+  color: yellow;
+}
+
+.item a {
+  color: white;
+  text-decoration: none;
 }
