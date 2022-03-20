@@ -9,6 +9,8 @@ const MyPosts = () => {
         { id: '2', avatar: 'https://n1s2.starhit.ru/6a/46/ae/6a46aeed947a183d67d1bc48211151bf/480x496_0_2bbde84177c9ff1c2299a26a0f69f69c@480x496_0xac120003_4430520541578509619.jpg', name: 'А мне 40 лет', likeCount:11 }
     ]
 
+    let postsElements = postData.map((post) => <Post avatar={post.avatar} name={post.name} likeCount={post.likeCount} /> )
+
     return (
         <div className={p.postsBlock}>
             <div>
@@ -21,8 +23,7 @@ const MyPosts = () => {
                 <h3>My posts</h3>
             </div>
             <div className={p.posts}>
-                <Post avatar={postData[0].avatar} name={postData[0].name} likeCount={postData[0].likeCount} />
-                <Post avatar={postData[1].avatar} name={postData[1].name} likeCount={postData[1].likeCount} />
+                {postsElements}
             </div>
         </div>)
 }
