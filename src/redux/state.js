@@ -27,5 +27,16 @@ let state = {
     }
 }
 
+{/*-32-1 добавление данных функция из BLL*/}
+export let addPost = (postMessage) =>{
+    let newPost = {
+        id:'3',
+        avatar:'',
+        name:postMessage,
+        likeCount:0
+    };
+    state.ProfilePage.postData.push(newPost)
+}
+
 export default state
 {/*Конец данных!*/ }

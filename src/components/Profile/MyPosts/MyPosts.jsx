@@ -6,18 +6,18 @@ const MyPosts = (props) => {
 
     let postsElements = props.postData.map((post) => <Post avatar={post.avatar} name={post.name} likeCount={post.likeCount} /> )
 
-    {/*-1-1)Создаем ссылку на новый элемент*/}
+    {/*-31-1)Создаем ссылку на новый элемент*/}
     let newPostElement = React.createRef();
 
     let addPost = () =>{
-        {/*-1-3)Считываем значение элемента*/}
-        alert(newPostElement.current.value)
+        {/*-31-32-3)Считываем/записывем значение элемента в прокинутую функцию из BLL*/}
+        props.addPost(newPostElement.current.value)
     }
 
     return (
         <div className={p.postsBlock}>
             <div>
-                {/*-1-2)Присвоение значения элемента*/}
+                {/*-31-2)Присвоение значения элемента*/}
                 <textarea ref={newPostElement}></textarea>
             </div>
             <div>

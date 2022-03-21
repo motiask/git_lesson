@@ -3,12 +3,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import state from './redux/state';
+import state, { addPost } from './redux/state';
+
+{/*-32-2 вызов функции
+addPost('новый текст');
+*/}
+
+
 
 ReactDOM.render(
 
   <React.StrictMode>
-    <App state={state} />
+    {/*-32-3 прокидывем через props*/}
+    <App state={state} addPost={addPost}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
