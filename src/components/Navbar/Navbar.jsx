@@ -4,7 +4,7 @@ import s from './Navbar.module.css';
 
 console.log(s);
 
-const Navbar = () => {
+const Navbar = (props) => {
   return (
     <nav className={s.nav_1}>
       <div className={`${s.item} ${s.active}`}>
