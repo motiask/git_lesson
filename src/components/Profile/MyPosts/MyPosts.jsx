@@ -12,15 +12,18 @@ const MyPosts = (props) => {
     let addPost = () => {
         {/*-31-32-3)Считываем/записывем значение элемента в прокинутую функцию из BLL*/ }
         {/*-33-0 после записи новых данных - перерисовка страницы*/ }
-        props.addPost(newPostElement.current.value);
-        newPostElement.current.value = '';
+        props.addPost();
+    }
+
+    let onPostChange = () => {
+        props.PushPostText(newPostElement.current.value)
     }
 
     return (
         <div className={p.postsBlock}>
             <div>
                 {/*-31-2)Присвоение значения элемента*/}
-                <textarea ref={newPostElement}></textarea>
+                <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText} ></textarea>
             </div>
             <div>
                 <button onClick={addPost}>Add post</button>
