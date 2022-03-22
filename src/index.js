@@ -1,24 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
-import state, { addPost } from './redux/state';
+import { rerenderEntireTree } from './render';
+import state from './redux/state';
 
-{/*-32-2 вызов функции
-addPost('новый текст');
-*/}
-
-
-
-ReactDOM.render(
-
-  <React.StrictMode>
-    {/*-32-3 прокидывем через props*/}
-    <App state={state} addPost={addPost}/>
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+{/*-33-1 Перерисовка страницы!*/ }
+rerenderEntireTree(state);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

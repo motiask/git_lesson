@@ -1,3 +1,4 @@
+import { rerenderEntireTree } from "../render";
 
 {/*Данные!*/ }
 
@@ -27,15 +28,17 @@ let state = {
     }
 }
 
-{/*-32-1 добавление данных функция из BLL*/}
-export let addPost = (postMessage) =>{
+{/*-32-1 добавление данных функция из BLL*/ }
+export let addPost = (postMessage) => {
     let newPost = {
-        id:'3',
-        avatar:'',
-        name:postMessage,
-        likeCount:0
+        id: '3',
+        avatar: '',
+        name: postMessage,
+        likeCount: 0
     };
     state.ProfilePage.postData.push(newPost)
+    {/*-33-1 Перерисовка страницы!*/ }
+    rerenderEntireTree(state);
 }
 
 export default state

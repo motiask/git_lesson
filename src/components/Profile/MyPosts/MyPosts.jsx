@@ -4,14 +4,16 @@ import Post from './Post/Post';
 
 const MyPosts = (props) => {
 
-    let postsElements = props.postData.map((post) => <Post avatar={post.avatar} name={post.name} likeCount={post.likeCount} /> )
+    let postsElements = props.postData.map((post) => <Post avatar={post.avatar} name={post.name} likeCount={post.likeCount} />)
 
-    {/*-31-1)Создаем ссылку на новый элемент*/}
+    {/*-31-1)Создаем ссылку на новый элемент*/ }
     let newPostElement = React.createRef();
 
-    let addPost = () =>{
-        {/*-31-32-3)Считываем/записывем значение элемента в прокинутую функцию из BLL*/}
-        props.addPost(newPostElement.current.value)
+    let addPost = () => {
+        {/*-31-32-3)Считываем/записывем значение элемента в прокинутую функцию из BLL*/ }
+        {/*-33-0 после записи новых данных - перерисовка страницы*/ }
+        props.addPost(newPostElement.current.value);
+        newPostElement.current.value = '';
     }
 
     return (
