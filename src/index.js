@@ -14,7 +14,7 @@ let rerenderEntireTree_callBack = (state) => {
     ReactDOM.render(
         <React.StrictMode>
             {/*-32-3 функцию addPost прокидывем через props*/}
-            <App state={state} addPost={store.addPost.bind(store)} PushPostText={store.PushPostText.bind(store)} />
+            <App state={state} dispatch={store.dispatch.bind(store)} />
         </React.StrictMode>,
         document.getElementById('root')
     );
@@ -25,7 +25,7 @@ let rerenderEntireTree_callBack = (state) => {
 console.log('начальный запус, рисуем страницу!');
 rerenderEntireTree_callBack(store.getState());
 
-{/*-35-2 передаем в state callback для вызова!*/}
+{/*-35-2 передаем в state callback для вызова!*/ }
 console.log('начальный запус, переопредляем функцию на callback!');
 store.subscribe(rerenderEntireTree_callBack);
 

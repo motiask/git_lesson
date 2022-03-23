@@ -41,28 +41,27 @@ let store = {
         this._callSubscribe = observer;
     },
 
-    /*-33-1 обновление текста в state после ввода на странице, для последующего отображения*/
-    PushPostText(newPostText) {
-        this._state.ProfilePage.newPostText = newPostText;
-        this._callSubscribe(this._state);
-    },
-
-    /*-32-1 добавление данных функция из BLL*/
-    addPost() {
-        let newPost = {
-            id: '3',
-            avatar: '',
-            name: this._state.ProfilePage.newPostText,
-            likeCount: 0
-        };
-        this._state.ProfilePage.newPostText = '';
-        this._state.ProfilePage.postData.push(newPost)
-        {/*-33-1 Перерисовка страницы!*/ }
-        this._callSubscribe(this._state);
+    dispatch(action) {
+        /*-33-1 обновление текста в state после ввода на странице, для последующего отображения*/
+        if (action.type === 'PUSH-POST-TEXT') {
+            this._state.ProfilePage.newPostText = action.newPostText;
+            this._callSubscribe(this._state);
+        } /*-32-1 добавление данных функция из BLL*/
+        else if (action.type === 'ADD-POST') {
+            let newPost = {
+                id: '3',
+                avatar: '',
+                name: this._state.ProfilePage.newPostText,
+                likeCount: 0
+            };
+            this._state.ProfilePage.newPostText = '';
+            this._state.ProfilePage.postData.push(newPost)
+            {/*-33-1 Перерисовка страницы!*/ }
+            this._callSubscribe(this._state);
+        }
     }
-
-
 }
+
 
 {/*Отладка store, в консоле просто ввести название*/ }
 window.store = store;

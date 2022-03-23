@@ -4,7 +4,7 @@ import Post from './Post/Post';
 
 const MyPosts = (props) => {
 
-    let postsElements = props.postData.map((post) => <Post avatar={post.avatar} name={post.name} likeCount={post.likeCount} />)
+    let postsElements = props.ProfilePage.postData.map((post) => <Post avatar={post.avatar} name={post.name} likeCount={post.likeCount} />)
 
     {/*-31-1)Создаем ссылку на новый элемент*/ }
     let newPostElement = React.createRef();
@@ -12,18 +12,18 @@ const MyPosts = (props) => {
     let addPost = () => {
         {/*-31-32-3)Считываем/записывем значение элемента в прокинутую функцию из BLL*/ }
         {/*-33-0 после записи новых данных - перерисовка страницы*/ }
-        props.addPost();
+        props.dispatch({ type: 'ADD-POST' });
     }
 
     let onPostChange = () => {
-        props.PushPostText(newPostElement.current.value)
+        props.dispatch({ type: 'PUSH-POST-TEXT', newPostText: newPostElement.current.value })
     }
-
     return (
+
         <div className={p.postsBlock}>
             <div>
                 {/*-31-2)Присвоение значения элемента*/}
-                <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText} ></textarea>
+                <textarea onChange={onPostChange} ref={newPostElement} value={props.ProfilePage.newPostText} ></textarea>
             </div>
             <div>
                 <button onClick={addPost}>Add post</button>
