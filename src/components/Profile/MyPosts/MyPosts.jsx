@@ -1,4 +1,5 @@
 import React from 'react';
+import { addPostActionCreator, pushPostText } from '../../../redux/state';
 import p from './MyPosts.module.css'
 import Post from './Post/Post';
 
@@ -12,11 +13,11 @@ const MyPosts = (props) => {
     let addPost = () => {
         {/*-31-32-3)Считываем/записывем значение элемента в прокинутую функцию из BLL*/ }
         {/*-33-0 после записи новых данных - перерисовка страницы*/ }
-        props.dispatch({ type: 'ADD-POST' });
+        props.dispatch(addPostActionCreator());
     }
 
     let onPostChange = () => {
-        props.dispatch({ type: 'PUSH-POST-TEXT', newPostText: newPostElement.current.value })
+        props.dispatch(pushPostText(newPostElement.current.value))
     }
     return (
 

@@ -1,3 +1,6 @@
+const ADD_POST = 'ADD-POST';
+const PUSH_POST_TEXT = 'PUSH-POST-TEXT';
+
 let store = {
     _state: {
         ProfilePage: {
@@ -43,11 +46,11 @@ let store = {
 
     dispatch(action) {
         /*-33-1 обновление текста в state после ввода на странице, для последующего отображения*/
-        if (action.type === 'PUSH-POST-TEXT') {
+        if (action.type === PUSH_POST_TEXT) {
             this._state.ProfilePage.newPostText = action.newPostText;
             this._callSubscribe(this._state);
         } /*-32-1 добавление данных функция из BLL*/
-        else if (action.type === 'ADD-POST') {
+        else if (action.type === ADD_POST) {
             let newPost = {
                 id: '3',
                 avatar: '',
@@ -59,6 +62,20 @@ let store = {
             {/*-33-1 Перерисовка страницы!*/ }
             this._callSubscribe(this._state);
         }
+    }
+
+}
+
+export const addPostActionCreator = () => {
+    return {
+        type: ADD_POST
+    }
+}
+
+export const pushPostText = (text) => {
+    return {
+        type: PUSH_POST_TEXT,
+        newPostText: text
     }
 }
 
