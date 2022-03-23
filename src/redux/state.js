@@ -1,5 +1,7 @@
-import { rerenderEntireTree } from "../render";
-
+{/*-35-3 переопределяем функцию!!!*/}
+let rerenderEntireTree = () => {
+    console.log('начальный запус, далее будет переопределение!')
+}
 {/*Данные!*/ }
 
 let state = {
@@ -30,14 +32,16 @@ let state = {
 }
 
 {/*-33-1 обновление текста в state после ввода на странице, для последующего отображения*/}
-export let PushPostText = (newPostText) => {
+export const PushPostText = (newPostText) => {
     state.ProfilePage.newPostText = newPostText;
     rerenderEntireTree(state);
 }
 
+{/*Отладка state, в консоле просто ввести название*/}
+window.state = state;
 
 {/*-32-1 добавление данных функция из BLL*/ }
-export let addPost = () => {
+export const addPost = () => {
     let newPost = {
         id: '3',
         avatar: '',
@@ -48,6 +52,11 @@ export let addPost = () => {
     state.ProfilePage.postData.push(newPost)
     {/*-33-1 Перерисовка страницы!*/ }
     rerenderEntireTree(state);
+}
+
+{/*-35-1 избавление от цикличности*/}
+export const subscribe = (observer) => {
+    rerenderEntireTree = observer;
 }
 
 export default state
