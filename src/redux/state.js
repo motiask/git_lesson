@@ -1,7 +1,6 @@
-const ADD_POST = 'ADD-POST';
-const PUSH_POST_TEXT = 'PUSH-POST-TEXT';
-const UPDATE_NEW_MASSAGE_TEXT = 'UPDATE-NEW-MASSAGE-TEXT';
-const SEND_MESSAGE = 'SEND-MESSAGE';
+import dialogsReduser from "./dialogs-reduser";
+import profileReduser from "./profile-reducer";
+
 
 let store = {
     _state: {
@@ -49,68 +48,13 @@ let store = {
     },
 
     dispatch(action) {
-        /*-33-1 обновление текста в state после ввода на странице, для последующего отображения*/
-        if (action.type === PUSH_POST_TEXT) {
-            this._state.ProfilePage.newPostText = action.newPostText;
-            this._callSubscribe(this._state);
-        } /*-32-1 добавление данных функция из BLL*/
-        else if (action.type === ADD_POST) {
-            let newPost = {
-                id: '3',
-                avatar: '',
-                name: this._state.ProfilePage.newPostText,
-                likeCount: 0
-            };
-            this._state.ProfilePage.newPostText = '';
-            this._state.ProfilePage.postData.push(newPost)
-            {/*-33-1 Перерисовка страницы!*/ }
-            this._callSubscribe(this._state);
-        }
-        else if (action.type === UPDATE_NEW_MASSAGE_TEXT) {
-            this._state.DialogsPage.newMessageText = action.body;
-            this._callSubscribe(this._state);
-        }
-        else if (action.type === SEND_MESSAGE) {
-            let newSendMessage = {
-                id: '6',
-                message: this._state.DialogsPage.newMessageText
-            };
-            this._state.DialogsPage.newMessageText = '';
-            this._state.DialogsPage.messagesData.push(newSendMessage)
-            this._callSubscribe(this._state);
-        }
+        this._state.ProfilePage = profileReduser(this._state.ProfilePage, action);
+        this._state.DialogsPage = dialogsReduser(this._state.DialogsPage, action);
+        this._callSubscribe(this._state);
+
     }
 
 }
-
-/*MyPosts*/
-export const addPostActionCreator = () => {
-    return {
-        type: ADD_POST
-    }
-}
-
-export const pushPostText = (text) => {
-    return {
-        type: PUSH_POST_TEXT,
-        newPostText: text
-    }
-}
-
-/*Dialogs*/
-export const addSendMessageCreator = () => {
-    return {
-        type: SEND_MESSAGE
-    }
-}
-
-export const pushNewMassageTextCreator = (text) => {
-    return {
-        type: UPDATE_NEW_MASSAGE_TEXT,
-        body: text
-    }
-}
-
 
 {/*Отладка store, в консоле просто ввести название*/ }
 window.store = store;

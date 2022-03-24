@@ -1,5 +1,5 @@
 import React from 'react';
-import { addSendMessageCreator, pushNewMassageTextCreator } from '../../redux/state';
+import { addSendMessageCreator, pushNewMassageTextCreator } from '../../redux/dialogs-reduser';
 import DialogsItems from './DialogItem/DialogsItem';
 import d from './Dialogs.module.css';
 import Message from './Message/Message';
@@ -19,7 +19,6 @@ const Dialogs = (props) => {
     let onSendMessageClick = () => {
         props.dispatch(addSendMessageCreator());
     }
-
 
     return (
         <div className={d.dialogs}>
