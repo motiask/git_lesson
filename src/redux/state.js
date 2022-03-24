@@ -1,5 +1,7 @@
 const ADD_POST = 'ADD-POST';
 const PUSH_POST_TEXT = 'PUSH-POST-TEXT';
+const UPDATE_NEW_MASSAGE_TEXT = 'UPDATE-NEW-MASSAGE-TEXT';
+const SEND_MESSAGE = 'SEND-MESSAGE';
 
 let store = {
     _state: {
@@ -25,7 +27,9 @@ let store = {
                 { id: '3', message: 'message 3' },
                 { id: '4', message: 'message 4' },
                 { id: '5', message: 'message 5' }
-            ]
+            ],
+            newMessageText: ''
+
         }
     },
 
@@ -62,10 +66,24 @@ let store = {
             {/*-33-1 Перерисовка страницы!*/ }
             this._callSubscribe(this._state);
         }
+        else if (action.type === UPDATE_NEW_MASSAGE_TEXT) {
+            this._state.DialogsPage.newMessageText = action.body;
+            this._callSubscribe(this._state);
+        }
+        else if (action.type === SEND_MESSAGE) {
+            let newSendMessage = {
+                id: '6',
+                message: this._state.DialogsPage.newMessageText
+            };
+            this._state.DialogsPage.newMessageText = '';
+            this._state.DialogsPage.messagesData.push(newSendMessage)
+            this._callSubscribe(this._state);
+        }
     }
 
 }
 
+/*MyPosts*/
 export const addPostActionCreator = () => {
     return {
         type: ADD_POST
@@ -76,6 +94,20 @@ export const pushPostText = (text) => {
     return {
         type: PUSH_POST_TEXT,
         newPostText: text
+    }
+}
+
+/*Dialogs*/
+export const addSendMessageCreator = () => {
+    return {
+        type: SEND_MESSAGE
+    }
+}
+
+export const pushNewMassageTextCreator = (text) => {
+    return {
+        type: UPDATE_NEW_MASSAGE_TEXT,
+        body: text
     }
 }
 

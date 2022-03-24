@@ -13,7 +13,7 @@ addPost('новый текст');
 let rerenderEntireTree_callBack = (state) => {
     ReactDOM.render(
         <React.StrictMode>
-            {/*-32-3 функцию addPost прокидывем через props*/}
+            {/*-32-3 функцию addPost прокидывем через props!! bind ОБЯЗАТЕЛЬНЫЙ*/}
             <App state={state} dispatch={store.dispatch.bind(store)} />
         </React.StrictMode>,
         document.getElementById('root')
