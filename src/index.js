@@ -1,8 +1,12 @@
 import reportWebVitals from './reportWebVitals';
-import store from './redux/state';
+
+/*import store from './redux/state';*/
+import store from './redux/redux-store';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+
 
 
 {/*-32-2 вызов функции с добавлением новых данных
@@ -27,7 +31,10 @@ rerenderEntireTree_callBack(store.getState());
 
 {/*-35-2 передаем в state callback для вызова!*/ }
 console.log('начальный запус, переопредляем функцию на callback!');
-store.subscribe(rerenderEntireTree_callBack);
+/*-42-1 вызов нашей пересовки был
+store.subscribe(rerenderEntireTree_callBack());
+теперь для redax:*/
+store.subscribe(() => { rerenderEntireTree_callBack(store.getState()) });
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
