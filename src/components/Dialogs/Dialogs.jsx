@@ -1,11 +1,10 @@
 import React from 'react';
-import { addSendMessageCreator, pushNewMassageTextCreator } from '../../redux/dialogs-reduser';
 import DialogsItems from './DialogItem/DialogsItem';
 import d from './Dialogs.module.css';
 import Message from './Message/Message';
 
 const Dialogs = (props) => {
-
+    debugger
     /*перезапись массива под новые теги*/
     let DialogsElements = props.DialogsPage.dialogsData.map((dialog) => (<DialogsItems nameD={dialog.nameD} id={dialog.id} />))
 
@@ -13,12 +12,20 @@ const Dialogs = (props) => {
     let MessageElements = props.DialogsPage.messagesData.map((message) => (<Message message={message.message} />))
 
     let onNewMessageText = (e) => {
-        props.dispatch(pushNewMassageTextCreator(e.target.value))
+        props.onNewMessageText_callback(e.target.value)
     };
 
     let onSendMessageClick = () => {
-        props.dispatch(addSendMessageCreator());
+        props.onSendMessageClick_callback();
     }
+
+    debugger
+
+    console.log(props.DialogsPage.newMessageText)
+    console.log(props.DialogsPage.dialogsData)
+    console.log(props.DialogsPage.messagesData)
+
+    
 
     return (
         <div className={d.dialogs}>

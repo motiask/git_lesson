@@ -14,11 +14,12 @@ addPost('новый текст');
 */}
 
 {/*-33-0-Функция ответственная за перерисовку страницы, после выполнения добавления в BLL или первой загрузки*/ }
-let rerenderEntireTree_callBack = (state) => {
+let rerenderEntireTree_callBack = (store) => {
+    
     ReactDOM.render(
         <React.StrictMode>
             {/*-32-3 функцию addPost прокидывем через props!! bind ОБЯЗАТЕЛЬНЫЙ*/}
-            <App state={state} dispatch={store.dispatch.bind(store)} />
+            <App store={store} />
         </React.StrictMode>,
         document.getElementById('root')
     );
@@ -27,14 +28,14 @@ let rerenderEntireTree_callBack = (state) => {
 
 {/*-33-1 Перерисовка страницы!*/ }
 console.log('начальный запус, рисуем страницу!');
-rerenderEntireTree_callBack(store.getState());
+rerenderEntireTree_callBack(store);
 
 {/*-35-2 передаем в state callback для вызова!*/ }
 console.log('начальный запус, переопредляем функцию на callback!');
 /*-42-1 вызов нашей пересовки был
 store.subscribe(rerenderEntireTree_callBack());
 теперь для redax:*/
-store.subscribe(() => { rerenderEntireTree_callBack(store.getState()) });
+store.subscribe(() => { rerenderEntireTree_callBack(store) });
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

@@ -4,19 +4,19 @@ const SEND_MESSAGE = 'SEND-MESSAGE';
 /*-42-1 Создаем начальные данные для redux!*/
 let initialState = {
     dialogsData: [
-        { id: '1', nameD: 'user 1' },
-        { id: '2', nameD: 'user 2' },
-        { id: '3', nameD: 'user 3' },
-        { id: '4', nameD: 'user 4' },
-        { id: '5', nameD: 'user 5' },
-        { id: '6', nameD: 'user 6' }
+        { id: '1', nameD: 'user 01' },
+        { id: '2', nameD: 'user 02' },
+        { id: '3', nameD: 'user 03' },
+        { id: '4', nameD: 'user 04' },
+        { id: '5', nameD: 'user 05' },
+        { id: '6', nameD: 'user 06' }
     ],
     messagesData: [
-        { id: '1', message: 'message 1' },
-        { id: '2', message: 'message 2' },
-        { id: '3', message: 'message 3' },
-        { id: '4', message: 'message 4' },
-        { id: '5', message: 'message 5' }
+        { id: '1', message: 'message 01' },
+        { id: '2', message: 'message 02' },
+        { id: '3', message: 'message 03' },
+        { id: '4', message: 'message 04' },
+        { id: '5', message: 'message 05' }
     ],
     newMessageText: ''
 }

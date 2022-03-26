@@ -1,30 +1,28 @@
 import React from 'react';
-import { addPostActionCreator, pushPostText } from '../../../redux/profile-reducer';
 import p from './MyPosts.module.css'
 import Post from './Post/Post';
 
 const MyPosts = (props) => {
 
-    let postsElements = props.ProfilePage.postData.map((post) => <Post avatar={post.avatar} name={post.name} likeCount={post.likeCount} />)
+    let postsElements = props.postData.map((post) => <Post avatar={post.avatar} name={post.name} likeCount={post.likeCount} />)
+
+    let onPostChange = () => {
+        props.onPostChange_callback(newPostElement.current.value);
+    }
+
+    let addPost = () => {
+        props.addPost_callback();
+    }
+
 
     {/*-31-1)Создаем ссылку на новый элемент*/ }
     let newPostElement = React.createRef();
 
-    let addPost = () => {
-        {/*-31-32-3)Считываем/записывем значение элемента в прокинутую функцию из BLL*/ }
-        {/*-33-0 после записи новых данных - перерисовка страницы*/ }
-        props.dispatch(addPostActionCreator());
-    }
-
-    let onPostChange = () => {
-        props.dispatch(pushPostText(newPostElement.current.value))
-    }
     return (
-
         <div className={p.postsBlock}>
             <div>
                 {/*-31-2)Присвоение значения элемента*/}
-                <textarea onChange={onPostChange} ref={newPostElement} value={props.ProfilePage.newPostText} ></textarea>
+                <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText} ></textarea>
             </div>
             <div>
                 <button onClick={addPost}>Add post</button>
@@ -35,7 +33,8 @@ const MyPosts = (props) => {
             <div className={p.posts}>
                 {postsElements}
             </div>
-        </div>)
+        </div>
+    )
 }
 
 export default MyPosts
