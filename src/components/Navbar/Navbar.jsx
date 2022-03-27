@@ -5,6 +5,7 @@ import s from './Navbar.module.css';
 console.log(s);
 
 const Navbar = (props) => {
+  console.log('Navbar компонента');
   return (
     <nav className={s.nav_1}>
       <div className={`${s.item} ${s.active}`}>

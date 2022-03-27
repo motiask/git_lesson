@@ -11,22 +11,32 @@ let initialState = {
 }
 
 const profileReduser = (state = initialState, action) => {
+    console.log(`'profileReduser компонента' ${action}`);
     switch (action.type) {
         /*-33-1 обновление текста в state после ввода на странице, для последующего отображения*/
         case (PUSH_POST_TEXT):
-            state.newPostText = action.newPostText;
-            return state;
+            {
+                let stateCopy = { ...state };
+                stateCopy.newPostText = action.newPostText;
+                return stateCopy;
+            }
         /*-32-1 добавление данных функция из BLL*/
         case (ADD_POST):
-            let newPost = {
-                id: '3',
-                avatar: '',
-                name: state.newPostText,
-                likeCount: 0
-            };
-            state.newPostText = '';
-            state.postData.push(newPost);
-            return state;
+            {
+                let newPost = {
+                    id: '3',
+                    avatar: '',
+                    name: state.newPostText,
+                    likeCount: 0
+                };
+                /*-47 для redux требуеться работать с копией данных, чтобы он мог их сравнить и перерисовать*/
+                let stateCopy = { ...state };
+                stateCopy.postData = [...state.postData];
+
+                stateCopy.newPostText = '';
+                stateCopy.postData.push(newPost);
+                return stateCopy;
+            }
             {/*-33-1 Перерисовка страницы!*/ }
         default:
             return state;

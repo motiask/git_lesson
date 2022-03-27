@@ -4,7 +4,6 @@ import d from './Dialogs.module.css';
 import Message from './Message/Message';
 
 const Dialogs = (props) => {
-    debugger
     /*перезапись массива под новые теги*/
     let DialogsElements = props.DialogsPage.dialogsData.map((dialog) => (<DialogsItems nameD={dialog.nameD} id={dialog.id} />))
 
@@ -18,14 +17,6 @@ const Dialogs = (props) => {
     let onSendMessageClick = () => {
         props.onSendMessageClick_callback();
     }
-
-    debugger
-
-    console.log(props.DialogsPage.newMessageText)
-    console.log(props.DialogsPage.dialogsData)
-    console.log(props.DialogsPage.messagesData)
-
-    
 
     return (
         <div className={d.dialogs}>

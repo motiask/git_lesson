@@ -7,6 +7,7 @@ import Navbar from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
 
 const App = (props) => {
+  console.log('APP компонента');
   return (
     <BrowserRouter>
       <div className='app-wrapper'>
@@ -14,8 +15,12 @@ const App = (props) => {
         <Navbar />
         <div className='app-wrapper-content'>
           <Routes>
+            {/*-45-работа с контекстом. Пропрсы не используем
             <Route path='/dialogs/*' element={<DialogsContainer store={props.store} />} />
-            <Route path='/profile/*' element={<Profile store={props.store} />} />
+            <Route path='/profile/*' element={<Profile store={props.store} />} />*/}
+            <Route path='/dialogs/*' element={<DialogsContainer />} />
+            <Route path='/profile/*' element={<Profile />} />
+
           </Routes>
         </div>
       </div>

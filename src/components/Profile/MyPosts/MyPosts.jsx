@@ -4,6 +4,8 @@ import Post from './Post/Post';
 
 const MyPosts = (props) => {
 
+    console.log('MyPosts компонента');
+
     let postsElements = props.postData.map((post) => <Post avatar={post.avatar} name={post.name} likeCount={post.likeCount} />)
 
     let onPostChange = () => {
