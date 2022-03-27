@@ -23,29 +23,22 @@ let initialState = {
 
 const dialogsReduser = (state = initialState, action) => {
     console.log(`'dialogsReduser компонента' ${action}`);
+
+    /*-47 для redux требуеться работать с копией данных, чтобы он мог их сравнить и перерисовать*/
     switch (action.type) {
-        case (UPDATE_NEW_MASSAGE_TEXT):
-            {
-                let stateCopy = { ...state };
-                stateCopy.newMessageText = action.body;
-                return stateCopy;
+        case UPDATE_NEW_MASSAGE_TEXT:
+            return {
+                ...state,
+                newMessageText: action.body
             }
-        case (SEND_MESSAGE):
-            {
-                let newSendMessage = {
-                    id: '6',
-                    message: state.newMessageText
-                };
-                /*-47 для redux требуеться работать с копией данных, чтобы он мог их сравнить и перерисовать*/
-                let stateCopy = { ...state };
-                stateCopy.messagesData = [...state.messagesData];
-                stateCopy.newMessageText = '';
-                stateCopy.messagesData.push(newSendMessage)
-                return stateCopy;
+        case SEND_MESSAGE:
+            return {
+                ...state,
+                newMessageText: '',
+                messagesData: [...state.messagesData, { id: '6', message: state.newMessageText }]
             }
         default:
             return state;
-
     }
 }
 

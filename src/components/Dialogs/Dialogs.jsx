@@ -5,10 +5,10 @@ import Message from './Message/Message';
 
 const Dialogs = (props) => {
     /*перезапись массива под новые теги*/
-    let DialogsElements = props.DialogsPage.dialogsData.map((dialog) => (<DialogsItems nameD={dialog.nameD} id={dialog.id} />))
+    let DialogsElements = props.DialogsPage.dialogsData.map((dialog) => (<DialogsItems nameD={dialog.nameD} key={dialog.id} id={dialog.id} />))
 
     /*перезапись массива под новые теги*/
-    let MessageElements = props.DialogsPage.messagesData.map((message) => (<Message message={message.message} />))
+    let MessageElements = props.DialogsPage.messagesData.map((message) => (<Message message={message.message} key={message.id}  />))
 
     let onNewMessageText = (e) => {
         props.onNewMessageText_callback(e.target.value)
