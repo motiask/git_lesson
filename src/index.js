@@ -18,15 +18,15 @@ addPost('новый текст');
 /*-47 просто вызов, перерисовка на redux
 let rerenderEntireTree_callBack = () => {
     console.log('Запуск rerenderEntireTree_callBack:');*/
-ReactDOM.render(
-    <React.StrictMode>
-        {/*-32-3 функцию addPost прокидывем через props!! bind ОБЯЗАТЕЛЬНЫЙ*/}
-        <Provider store={store}>
-            <App />
-        </Provider>
-    </React.StrictMode>,
-    document.getElementById('root')
-);
+    ReactDOM.render(
+        <React.StrictMode>
+            {/*-32-3 функцию addPost прокидывем через props!! bind ОБЯЗАТЕЛЬНЫЙ*/}
+            <Provider store={store}>
+                <App />
+            </Provider>
+        </React.StrictMode>,
+        document.getElementById('root')
+    );
 /*}*/
 
 
