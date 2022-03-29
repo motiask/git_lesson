@@ -4,14 +4,12 @@ import { followActionCreator, setUsersCreator, unfollowActionCreator } from '../
 import Users from './Users';
 
 let mapStateToProps = (state) => {
-    debugger
     return {
         usersData: state.usersPage.usersData
     }
 }
 
 let mapDispatchToProps = (dispatch) => {
-    debugger
     return {
         follow: (userId) => {
             dispatch(followActionCreator(userId))

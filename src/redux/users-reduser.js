@@ -1,3 +1,4 @@
+import React from 'react';
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
@@ -44,13 +45,12 @@ let initialState = {
 }
 
 const usersReducer = (state = initialState, action) => {
-    debugger
     switch (action.type) {
 
         case FOLLOW:
             return {
                 ...state,
-                usersData: state.usersData.map(u => {
+                usersData: state.usersData.map(/*callbackfn:*/ u => {
                     if (u.id === action.userId) {
                         return { ...u, followed: true }
                     }
@@ -60,7 +60,7 @@ const usersReducer = (state = initialState, action) => {
         case UNFOLLOW:
             return {
                 ...state,
-                usersData: state.usersData.map(u => {
+                usersData: state.usersData.map( u => {
                     if (u.id === action.userId) {
                         return { ...u, followed: false }
                     }
