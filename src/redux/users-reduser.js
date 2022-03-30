@@ -1,47 +1,15 @@
-import React from 'react';
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 
 
 let initialState = {
-    usersData: [
-        /*  {
-              id: 1,
-              photoUrl: 'https://cdn.shazoo.ru/455416_qnnrxVCiJB_avatar_the_last_airbender.jpg',
-              followed: true,
-              fullName: 'user 001',
-              status: 'status 001',
-              location: {
-                  city: 'Minsk',
-                  country: 'Belarus'
-              }
-          },
-          {
-              id: 2,
-              photoUrl: 'https://cdn.shazoo.ru/455416_qnnrxVCiJB_avatar_the_last_airbender.jpg',
-              followed: false,
-              fullName: 'user 002',
-              status: 'status 002',
-              location: {
-                  city: 'Moskow',
-                  country: 'Russia'
-              }
-          },
-          {
-              id: 3,
-              photoUrl: 'https://cdn.shazoo.ru/455416_qnnrxVCiJB_avatar_the_last_airbender.jpg',
-              followed: true,
-              fullName: 'user 003',
-              status: 'status 003',
-              location: {
-                  city: 'Kiev',
-                  country: 'Ukraine'
-              }
-  
-          }*/
-    ]
-
+    usersData: [],
+    pageSize: 5,
+    totalUsersCount: 0,
+    currentPage: 1
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -70,7 +38,17 @@ const usersReducer = (state = initialState, action) => {
         case SET_USERS:
             return {
                 ...state,
-                usersData: [...state.usersData, ...action.users]
+                usersData: action.users
+            }
+        case SET_CURRENT_PAGE:
+            return {
+                ...state,
+                currentPage: action.currentPage
+            }
+        case SET_TOTAL_USERS_COUNT:
+            return {
+                ...state,
+                totalUsersCount: action.totalUsersCount
             }
         default:
             return state
@@ -89,5 +67,14 @@ export const unfollowActionCreator = (userId) => {
 export const setUsersCreator = (users) => {
     return { type: SET_USERS, users }
 }
+
+export const setCurrentPageCreator = (currentPage) => {
+    return { type: SET_CURRENT_PAGE, currentPage }
+}
+
+export const setTotalUsersCountCreator = (totalUsersCount) => {
+    return { type: SET_TOTAL_USERS_COUNT, totalUsersCount }
+}
+
 
 export default usersReducer
