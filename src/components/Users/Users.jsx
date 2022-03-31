@@ -3,7 +3,7 @@ import styles from './Users.module.css';
 import userPhoto from '../../assets/images/avatar.png'
 
 let Users = (props) => {
-    debugger
+
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
     let pages = [];
     for (let i = 1; i <= pagesCount; i++) {
