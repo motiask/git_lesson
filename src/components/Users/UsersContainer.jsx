@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { followActionCreator, setCurrentPageCreator, setTotalUsersCountCreator, setUsersCreator, toggleIsFetchingCreator, unfollowActionCreator } from '../../redux/users-reduser';
+import { follow, setCurrentPage, setTotalUsersCount, setUsers, toggleIsFetching, unfollow } from '../../redux/users-reduser';
 import Users from './Users';
 import * as axios from 'axios';
 import Preloader from '../common/Preloader/Preloader';
@@ -60,6 +60,7 @@ let mapStateToProps = (state) => {
     }
 }
 
+/*-58-пускай redux сам создает callback
 let mapDispatchToProps = (dispatch) => {
     return {
         follow: (userId) => {
@@ -84,5 +85,19 @@ let mapDispatchToProps = (dispatch) => {
     }
 
 }
+*/
+/*-58- вместо записи 
+follow:followActionCreator, - но тогда нужна одинаковое название
+*/
+
+let mapDispatchToProps = {
+    follow,
+    unfollow,
+    setUsers,
+    setCurrentPage,
+    setTotalUsersCount,
+    toggleIsFetching
+}
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersClassContainer);
