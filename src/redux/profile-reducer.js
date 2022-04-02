@@ -1,5 +1,7 @@
 const ADD_POST = 'ADD-POST';
 const PUSH_POST_TEXT = 'PUSH-POST-TEXT';
+const SET_USER_PROFILE = 'SET-USER-PROFILE';
+
 
 /*-42-1 Создаем начальные данные для redux!*/
 let initialState = {
@@ -7,7 +9,8 @@ let initialState = {
         { id: '1', avatar: 'https://static.1tv.ru/uploads/photo/image/2/huge/4062_huge_876c41f50e.jpg', name: '//Мне еще 30 лет!', likeCount: 2 },
         { id: '2', avatar: 'https://n1s2.starhit.ru/6a/46/ae/6a46aeed947a183d67d1bc48211151bf/480x496_0_2bbde84177c9ff1c2299a26a0f69f69c@480x496_0xac120003_4430520541578509619.jpg', name: '//А мне 40 лет', likeCount: 11 }
     ],
-    newPostText: ''
+    newPostText: '',
+    profile: null
 }
 
 const profileReduser = (state = initialState, action) => {
@@ -27,6 +30,13 @@ const profileReduser = (state = initialState, action) => {
                 postData: [...state.postData, { id: '3', avatar: '', name: state.newPostText, likeCount: 0 }],
                 newPostText: ''
             }
+        case SET_USER_PROFILE:
+            return {
+                ...state, profile: action.profile
+
+            }
+
+
         default:
             return state;
     }
@@ -43,6 +53,13 @@ export const pushPostText = (text) => {
     return {
         type: PUSH_POST_TEXT,
         newPostText: text
+    }
+}
+
+export const setUserProfile = (profile) => {
+    return {
+        type: SET_USER_PROFILE,
+        profile
     }
 }
 
