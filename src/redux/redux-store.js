@@ -1,3 +1,4 @@
+import authReduser from "./auth-reduser";
 import dialogsReduser from "./dialogs-reduser";
 import profileReduser from "./profile-reducer";
 import usersReducer from "./users-reduser";
@@ -8,7 +9,8 @@ let redusers = combineReducers(
     {
         ProfilePage: profileReduser,
         DialogsPage: dialogsReduser,
-        usersPage: usersReducer
+        usersPage: usersReducer,
+        auth: authReduser
     }
 )
 
