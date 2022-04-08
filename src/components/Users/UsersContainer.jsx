@@ -11,7 +11,7 @@ class UsersClassContainer extends React.Component {
     //-54-метод вмонтировать. Используется из react
     componentDidMount() {
         this.props.toggleIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, { withCredentials: true }).then(response => {
             this.props.setUsers(response.data.items);
             this.props.setTotalUsersCount(response.data.totalCount);
             this.props.toggleIsFetching(false);
@@ -22,7 +22,7 @@ class UsersClassContainer extends React.Component {
     onPageChanged = (pageNamber) => {
         this.props.setCurrentPage(pageNamber);
         this.props.toggleIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNamber}&count=${this.props.pageSize}`).then(response => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNamber}&count=${this.props.pageSize}`, { withCredentials: true }).then(response => {
             this.props.setUsers(response.data.items);
             this.props.toggleIsFetching(false);
         });
