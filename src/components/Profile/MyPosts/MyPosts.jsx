@@ -26,7 +26,7 @@ const MyPosts = (props) => {
                 {/*-31-2)Присвоение значения элемента*/}
                 <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText} ></textarea>
             </div>
-            <div>
+            <div key={1}>
                 <button onClick={addPost}>Add post</button>
             </div>
             <div>

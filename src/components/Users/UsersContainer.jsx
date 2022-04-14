@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { follow, setCurrentPage, setTotalUsersCount, setUsers, toggleIsFetching, unfollow } from '../../redux/users-reduser';
+import { follow, setCurrentPage, setTotalUsersCount, setUsers, toggleIsFetching, unfollow, toggleFollowingProgress } from '../../redux/users-reduser';
 import Users from './Users';
-import * as axios from 'axios';
 import Preloader from '../common/Preloader/Preloader';
 import { usersAPI } from '../../api/api';
 
@@ -40,12 +39,15 @@ class UsersClassContainer extends React.Component {
                 currentPage={this.props.currentPage}
                 selectedPage={this.props.selectedPage}
                 usersData={this.props.usersData}
+                followingInProgress={this.props.followingInProgress}
 
                 //callback этого класса
                 onPageChanged={this.onPageChanged}
                 //callback из props/ dispatch
                 unfollow={this.props.unfollow}
-                follow={this.props.follow} />
+                follow={this.props.follow}
+                toggleFollowingProgress={this.props.toggleFollowingProgress}
+            />
         </>
     }
 
@@ -57,7 +59,8 @@ let mapStateToProps = (state) => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        followingInProgress: state.usersPage.followingInProgress
     }
 }
 
@@ -97,7 +100,8 @@ let mapDispatchToProps = {
     setUsers,
     setCurrentPage,
     setTotalUsersCount,
-    toggleIsFetching
+    toggleIsFetching,
+    toggleFollowingProgress
 }
 
 
