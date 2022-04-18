@@ -1,31 +1,34 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { follow, setCurrentPage, setTotalUsersCount, setUsers, toggleIsFetching, unfollow, toggleFollowingProgress } from '../../redux/users-reduser';
+import { follow, setTotalUsersCount, unfollow, toggleFollowingProgress, getUsersThunkCreator } from '../../redux/users-reduser';
 import Users from './Users';
 import Preloader from '../common/Preloader/Preloader';
-import { usersAPI } from '../../api/api';
 
 
 class UsersClassContainer extends React.Component {
 
     //-54-метод вмонтировать. Используется из react
     componentDidMount() {
-        this.props.toggleIsFetching(true);
-        usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
-            this.props.setUsers(data.items);
-            this.props.setTotalUsersCount(data.totalCount);
-            this.props.toggleIsFetching(false);
-        });
+        this.props.getUsersCallBack(this.props.currentPage, this.props.pageSize);
+        /*-66 thunk
+           this.props.toggleIsFetching(true);
+           usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
+               this.props.setUsers(data.items);
+               this.props.setTotalUsersCount(data.totalCount);
+               this.props.toggleIsFetching(false);
+           });*/
     }
 
     //-мой метод, 
     onPageChanged = (pageNamber) => {
+        this.props.getUsersCallBack(pageNamber, this.props.pageSize);
+        /*-66 thunk
         this.props.setCurrentPage(pageNamber);
         this.props.toggleIsFetching(true);
         usersAPI.getUsers(pageNamber, this.props.pageSize).then(data => {
             this.props.setUsers(data.items);
             this.props.toggleIsFetching(false);
-        });
+        });*/
     }
 
     // Используется из react
@@ -46,7 +49,9 @@ class UsersClassContainer extends React.Component {
                 //callback из props/ dispatch
                 unfollow={this.props.unfollow}
                 follow={this.props.follow}
+                /*-66-thunk
                 toggleFollowingProgress={this.props.toggleFollowingProgress}
+                */
             />
         </>
     }
@@ -97,11 +102,14 @@ follow:followActionCreator, - но тогда нужна одинаковое н
 let mapDispatchToProps = {
     follow,
     unfollow,
+    setTotalUsersCount,
+    /*-66 thunk 
     setUsers,
     setCurrentPage,
-    setTotalUsersCount,
-    toggleIsFetching,
-    toggleFollowingProgress
+    toggleIsFetching, */
+    toggleFollowingProgress,
+    //thunk
+    getUsersCallBack: getUsersThunkCreator
 }
 
 
