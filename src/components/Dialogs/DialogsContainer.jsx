@@ -24,7 +24,8 @@ const DialogsContainer = (props) => {
 let mapStateToProps = (state) => {
     console.log('DialogsContainer компонента');
     return {
-        DialogsPage: state.DialogsPage
+        DialogsPage: state.DialogsPage,
+        isAuth: state.auth.isAuth
     }
 }
 /*-45- работа с context redux - название по документации.  */
