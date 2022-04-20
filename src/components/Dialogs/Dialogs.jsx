@@ -20,7 +20,7 @@ const Dialogs = (props) => {
     }
 
     //-68-redirect
-    if (!props.isAuth) return <Navigate to={'/login'} />
+   //-69 if (!props.isAuth) return <Navigate to={'/login'} />
 
     return (
         <div className={d.dialogs}>
