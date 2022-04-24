@@ -4,6 +4,7 @@ import { follow, setTotalUsersCount, unfollow, toggleFollowingProgress, getUsers
 import Users from './Users';
 import Preloader from '../common/Preloader/Preloader';
 import { withAuthRedirect } from '../hoc/withAuthRedirect';
+import { compose } from 'redux';
 
 
 class UsersClassContainer extends React.Component {
@@ -113,6 +114,14 @@ let mapDispatchToProps = {
     getUsersCallBack: getUsersThunkCreator
 }
 
+//-70
+export default compose(
+    withAuthRedirect,
+    connect(mapStateToProps, mapDispatchToProps)
+)(UsersClassContainer)
+
+/*-70
 let withRedirect = withAuthRedirect(UsersClassContainer)
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRedirect);
+*/

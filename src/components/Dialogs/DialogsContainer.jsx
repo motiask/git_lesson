@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { addSendMessageCreator, pushNewMassageTextCreator } from '../../redux/dialogs-reduser';
 import { withAuthRedirect } from '../hoc/withAuthRedirect';
 import Dialogs from './Dialogs';
@@ -36,10 +37,17 @@ let mapDispatchToProps = (dispatch) => {
     }
 }
 
+/*-70 compose
 //-69 HOC
 let AuthRedirectComponent = withAuthRedirect(Dialogs);
 
 /*-45- работа с context redux - название по документации.  Это правила как правильно законнектить к стору*/
+/*-70
 const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);
 
-export default DialogsContainer;
+export default DialogsContainer;*/
+
+export default compose (
+    connect(mapStateToProps, mapDispatchToProps),
+    withAuthRedirect
+    )(Dialogs);
